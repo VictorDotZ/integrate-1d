@@ -18,10 +18,17 @@ func usage() {
 
 var ruleName string
 var functionName string
+var a float64
+var b float64
+var n uint64
 
 func init() {
 	flag.StringVar(&ruleName, "method", "Gauss", "name of Quadrature Rule")
 	flag.StringVar(&functionName, "func", "Polynom", "name of function for integrating")
+	flag.Float64Var(&a, "a", 0.0, "start of segment")
+	flag.Float64Var(&b, "b", 1.0, "end of segment")
+	flag.Uint64Var(&n, "n", 100, "number of splits")
+
 }
 
 func main() {
@@ -51,7 +58,7 @@ func main() {
 		QRule: rules[ruleName],
 	}
 
-	result := integral.Integrate(0, 2, 10)
+	result := integral.Integrate(a, b, n)
 
 	fmt.Println(result)
 }
